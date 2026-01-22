@@ -4,61 +4,42 @@ export default function Contact() {
     return (
         <Layout>
             <div className="container" style={{ maxWidth: '600px' }}>
-                <h1 className="page-title">Contact Us</h1>
-                <p className="page-subtitle" style={{ marginBottom: '3rem' }}>
-                    Have a question? We'd love to hear from you.
-                </p>
+                <div className="text-center mb-5">
+                    <h1 className="display-4 fw-bold mb-3 text-dark">Contact Us</h1>
+                    <p className="lead text-muted">Have a question? We'd love to hear from you.</p>
+                </div>
 
-                <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                    <div>
-                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Name</label>
+                <form className="d-flex flex-column gap-3 shadow-sm p-4 rounded bg-white border">
+                    <div className="mb-3">
+                        <label className="form-label fw-bold">Name</label>
                         <input
                             type="text"
+                            className="form-control"
                             placeholder="Your Name"
-                            style={{
-                                width: '100%',
-                                padding: '0.75rem',
-                                borderRadius: '8px',
-                                border: '1px solid #e2e8f0',
-                                fontSize: '1rem'
-                            }}
                         />
                     </div>
-                    <div>
-                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Email</label>
+                    <div className="mb-3">
+                        <label className="form-label fw-bold">Email</label>
                         <input
                             type="email"
+                            className="form-control"
                             placeholder="your@email.com"
-                            style={{
-                                width: '100%',
-                                padding: '0.75rem',
-                                borderRadius: '8px',
-                                border: '1px solid #e2e8f0',
-                                fontSize: '1rem'
-                            }}
                         />
                     </div>
-                    <div>
-                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Message</label>
+                    <div className="mb-3">
+                        <label className="form-label fw-bold">Message</label>
                         <textarea
+                            className="form-control"
                             rows="5"
                             placeholder="How can we help?"
-                            style={{
-                                width: '100%',
-                                padding: '0.75rem',
-                                borderRadius: '8px',
-                                border: '1px solid #e2e8f0',
-                                fontSize: '1rem',
-                                fontFamily: 'inherit'
-                            }}
                         ></textarea>
                     </div>
-                    <button type="button" className="btn btn-primary">Send Message</button>
+                    <button type="button" className="btn btn-primary w-100">Send Message</button>
                 </form>
 
-                <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
-                    <p>Email: support@luxestore.demo</p>
-                    <p>Phone: +1 (555) 123-4567</p>
+                <div className="mt-5 text-center text-muted">
+                    <p className="mb-1">Email: support@luxestore.demo</p>
+                    <p className="mb-1">Phone: +1 (555) 123-4567</p>
                     <p>Address: 123 Tech Avenue, Silicon Valley, CA</p>
                 </div>
             </div>

@@ -9,8 +9,8 @@ export default function ProductDetail() {
     if (!product) {
         return (
             <Layout>
-                <div className="error-container">
-                    <h2>Product not found</h2>
+                <div className="text-center py-5">
+                    <h2 className="mb-4">Product not found</h2>
                     <Link to="/" className="btn btn-secondary">Back to Home</Link>
                 </div>
             </Layout>
@@ -19,16 +19,20 @@ export default function ProductDetail() {
 
     return (
         <Layout>
-            <div className="product-detail-container">
-                <div className="detail-image-wrapper">
-                    <img src={product.image} alt={product.name} className="detail-image" />
+            <div className="row align-items-center bg-white p-4 p-md-5 rounded-4 shadow-lg border">
+                <div className="col-md-6 mb-4 mb-md-0">
+                    <div className="bg-light rounded-3 p-5 d-flex justify-content-center align-items-center">
+                        <img src={product.image} alt={product.name} className="img-fluid" style={{ maxHeight: '400px', objectFit: 'contain' }} />
+                    </div>
                 </div>
-                <div className="detail-content">
-                    <Link to="/" className="back-link">&larr; Back to Products</Link>
-                    <h1 className="detail-title">{product.name}</h1>
-                    <p className="detail-price">{product.price}</p>
-                    <p className="detail-description">{product.details}</p>
-                    <button className="btn btn-primary btn-large">Add to Cart</button>
+                <div className="col-md-6 d-flex flex-column gap-3">
+                    <Link to="/" className="text-decoration-none text-muted mb-2 d-block">&larr; Back to Products</Link>
+                    <h1 className="display-4 fw-bold text-dark">{product.name}</h1>
+                    <p className="display-6 text-primary fw-bold">{product.price}</p>
+                    <p className="lead text-secondary">{product.details}</p>
+                    <div className="mt-3">
+                        <button className="btn btn-primary btn-lg px-5 shadow-sm">Add to Cart</button>
+                    </div>
                 </div>
             </div>
         </Layout>
