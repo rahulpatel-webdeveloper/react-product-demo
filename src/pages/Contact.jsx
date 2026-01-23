@@ -38,9 +38,9 @@ export default function Contact() {
                 </form>
 
                 <div className="mt-5 text-center text-muted">
-                    <p className="mb-1">Email: support@luxestore.demo</p>
-                    <p className="mb-1">Phone: +1 (555) 123-4567</p>
-                    <p>Address: 123 Tech Avenue, Silicon Valley, CA</p>
+                    <p className="mb-1">Email: rpatel.techark@gmail.com</p>
+                    <p className="mb-1">Phone: +91 9876543210</p>
+                    <p>Address: Mota, Bardoli, surat Gujarat, India</p>
                 </div>
             </div>
         </Layout>
