@@ -1,13 +1,13 @@
 import Layout from '../components/Layout';
 import ProductCard from '../components/ProductCard';
 import HeroBanner from '../components/HeroBanner';
+import ProductSlider from '../components/ProductSlider';
 import { products } from '../data/products';
 
 export default function ProductList() {
     return (
         <Layout>
             <HeroBanner />
-
             <section className="text-center py-5 mb-4">
                 <h2 className="display-5 fw-bold mb-3 text-dark">All Products</h2>
                 <p className="lead text-muted">Browse our complete collection of premium gadgets.</p>
@@ -20,6 +20,7 @@ export default function ProductList() {
                     </div>
                 ))}
             </div>
+            <ProductSlider />
         </Layout>
     );
 }

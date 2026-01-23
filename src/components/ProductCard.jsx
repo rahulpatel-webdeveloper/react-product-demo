@@ -12,9 +12,14 @@ export default function ProductCard({ product }) {
                     <span className="h5 text-primary fw-bold mb-0">{product.price}</span>
                 </div>
                 <p className="card-text text-muted small mb-3 flex-grow-1">{product.description}</p>
-                <Link to={`/product/${product.id}`} className="btn btn-primary w-100 mt-2">
-                    View Product
-                </Link>
+                <div className="d-flex gap-2 mt-2">
+                    <Link to={`/product/${product.id}`} className="btn btn-outline-primary flex-grow-1">
+                        View Details
+                    </Link>
+                    <button className="btn btn-primary px-3 shadow-sm" title="Add to Cart">
+                        <i className="bi bi-cart-plus"></i> Add
+                    </button>
+                </div>
             </div>
         </div>
     );

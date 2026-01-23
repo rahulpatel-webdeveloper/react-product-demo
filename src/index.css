@@ -407,3 +407,241 @@ body {
     display: flex;
   }
 }
+
+/* =========================================
+   Product Slider Styles - BEM Parent Class
+   ========================================= */
+
+.product-slider {
+  padding: 3rem 0;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  margin-bottom: 3rem;
+}
+
+.product-slider__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.product-slider__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.product-slider__subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.product-slider__container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.product-slider__track {
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.product-slider__slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.product-slider__slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  padding: 0 0.5rem;
+}
+
+.product-slider__card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.product-slider__card-image {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  padding: 2rem;
+}
+
+.product-slider__card-image img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-slider__card:hover .product-slider__card-image img {
+  transform: scale(1.05);
+}
+
+.product-slider__card-content {
+  padding: 1.5rem;
+}
+
+.product-slider__card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+}
+
+.product-slider__card-description {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.product-slider__card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.product-slider__card-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4f46e5;
+}
+
+.product-slider__card-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #4f46e5;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.product-slider__card-button:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+/* Navigation Arrows */
+.product-slider__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  color: #1f2937;
+}
+
+.product-slider__nav:hover {
+  background: #4f46e5;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.product-slider__nav--prev {
+  left: 0;
+}
+
+.product-slider__nav--next {
+  right: 0;
+}
+
+/* Dots Navigation */
+.product-slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.product-slider__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.product-slider__dot:hover {
+  background: #94a3b8;
+}
+
+.product-slider__dot--active {
+  background: #4f46e5;
+  transform: scale(1.2);
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 768px) {
+  .product-slider__card {
+    flex-direction: row;
+  }
+
+  .product-slider__card-image {
+    flex: 0 0 50%;
+    height: 400px;
+  }
+
+  .product-slider__card-content {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .product-slider__title {
+    font-size: 2.5rem;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 992px) {
+  .product-slider__container {
+    padding: 0 4rem;
+  }
+
+  .product-slider__card-image {
+    height: 450px;
+  }
+
+  .product-slider__card-content {
+    padding: 3rem;
+  }
+
+  .product-slider__card-title {
+    font-size: 2rem;
+  }
+
+  .product-slider__nav {
+    width: 56px;
+    height: 56px;
+  }
+}
