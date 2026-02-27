@@ -5,8 +5,8 @@ export default function Layout({ children }) {
     return (
         <div className="d-flex flex-column min-vh-100 bg-light">
             <Header />
-            <main className="flex-grow-1 py-5">
-                <div className="container">
+            <main className="flex-grow-1 h-100">
+                <div>
                     {children}
                 </div>
             </main>
