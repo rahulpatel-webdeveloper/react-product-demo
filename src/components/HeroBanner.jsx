@@ -1,12 +1,32 @@
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
+import { useEffect, useState } from 'react';
 
 export default function HeroBanner() {
-    // Get first 3 products for the banner cards
-    const featuredProducts = products.slice(0, 3);
+    const [featuredProducts, setFeatured] = useState([]);
     const badges = ['New', 'Popular', 'Featured'];
 
+    useEffect(() => {
+        const fetchFeatured = async () => {
+            try {
+                const res = await fetch('https://dummyjson.com/products?limit=3');
+                const data = await res.json();
+                // normalize to include image property
+                const mapped = data.products.map(p => ({
+                    id: p.id,
+                    name: p.title,
+                    image: p.thumbnail || (p.images && p.images[0]) || '',
+                    description: p.description
+                }));
+                setFeatured(mapped);
+            } catch (err) {
+                console.error('Failed to load featured products', err);
+            }
+        };
+        fetchFeatured();
+    }, []);
+
     return (
+        <>
         <section className="hero-banner">
             <div className="hero-banner_container">
                 <div className="hero-banner_row">
@@ -41,36 +61,40 @@ export default function HeroBanner() {
                     {/* Right Product Cards Section */}
                     <div className="hero-banner_cards-section">
                         <div className="hero-banner_cards-container">
-                            <div className="hero-banner_cards-grid">
-                                {/* First Column - Two stacked cards */}
-                                <div className="hero-banner_cards-column">
-                                    <div className="hero-banner_cards-stack">
-                                        {featuredProducts.slice(0, 2).map((product, index) => (
-                                            <div className="hero-banner_card-wrapper" key={product.id}>
-                                                <Link to={`/product/${product.id}`} className="hero-banner_card-link">
-                                                    <div className="hero-banner_card hero-banner_card--small">
-                                                        <div className="hero-banner_card-image-container">
-                                                            <span className={`hero-banner_badge hero-banner_badge--${index === 0 ? 'new' : 'popular'}`}>
-                                                                {badges[index]}
-                                                            </span>
-                                                            <div className="hero-banner_card-image-wrapper">
-                                                                <img
-                                                                    src={product.image}
-                                                                    alt={product.name}
-                                                                    className="hero-banner_card-image"
-                                                                />
+                            {featuredProducts.length === 0 ? (
+                                <p className="hero-banner_loading">Loading featured products&hellip;</p>
+                            ) : (
+                                <>
+                                    <div className="hero-banner_cards-grid">
+                                        {/* First Column - Two stacked cards */}
+                                        <div className="hero-banner_cards-column">
+                                            <div className="hero-banner_cards-stack">
+                                                {featuredProducts.length >= 2 && featuredProducts.slice(0, 2).map((product, index) => (
+                                                    <div className="hero-banner_card-wrapper" key={product.id}>
+                                                        <Link to={`/product/${product.id}`} className="hero-banner_card-link">
+                                                            <div className="hero-banner_card hero-banner_card--small">
+                                                                <div className="hero-banner_card-image-container">
+                                                                    <span className={`hero-banner_badge hero-banner_badge--${index === 0 ? 'new' : 'popular'}`}>
+                                                                        {badges[index]}
+                                                                    </span>
+                                                                    <div className="hero-banner_card-image-wrapper">
+                                                                        <img
+                                                                            src={product.image}
+                                                                            alt={product.name}
+                                                                            className="hero-banner_card-image"
+                                                                        />
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        </Link>
                                                     </div>
-                                                </Link>
+                                                ))}
                                             </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                        </div>
 
                                 {/* Second Column - Featured large card */}
                                 <div className="hero-banner_cards-column">
-                                    <Link to={`/product/${featuredProducts[2].id}`} className="hero-banner_card-link">
+                                    {featuredProducts.length > 2 && (
                                         <div className="hero-banner_card hero-banner_card--featured">
                                             <div className="hero-banner_card-image-container hero-banner_card-image-container--featured">
                                                 <span className="hero-banner_badge hero-banner_badge--featured">
@@ -88,15 +112,20 @@ export default function HeroBanner() {
                                                     <p className="hero-banner_card-text">
                                                         {featuredProducts[2].description.substring(0, 80)}...
                                                     </p>
-                                                    <span className="hero-banner_card-button">
-                                                        READ MORE
-                                                    </span>
                                                 </div>
                                             </div>
+                                            <div className="hero-banner_card-footer">
+                                                <h4 className="hero-banner_card-footer-title">{featuredProducts[2].name}</h4>
+                                                <Link to={`/product/${featuredProducts[2].id}`} className="hero-banner_card-view-more">
+                                                    View More
+                                                </Link>
+                                            </div>
                                         </div>
-                                    </Link>
+                                    )}
                                 </div>
                             </div>
+                        </>
+                    )}
 
                             {/* Decorative dots */}
                             <div className="hero-banner_dots">
@@ -109,5 +138,35 @@ export default function HeroBanner() {
                 </div>
             </div>
         </section>
+
+        {/* Additional split-screen variant below the original banner */}
+        <section className="hero-banner-split">
+            <div className="hero-banner_container">
+                {/* For Him Section */}
+                <Link to="/products" className="hero-banner_section hero-banner_section--left">
+                    <div className="hero-banner_section-image">
+                        <div className="hero-banner_section-overlay"></div>
+                    </div>
+                    {/* <div className="hero-banner_section-content">
+                        <p className="hero-banner_section-label">WATCHES</p>
+                        <h2 className="hero-banner_section-title">For Him</h2>
+                    </div> */}
+                </Link>
+
+                {/* For Her Section */}
+                <Link to="/products" className="hero-banner_section hero-banner_section--right">
+                    <div className="hero-banner_section-image">
+                        <div className="hero-banner_section-overlay"></div>
+                    </div>
+                    {/* <div className="hero-banner_section-content">
+                        <p className="hero-banner_section-label">WATCHES</p>
+                        <h2 className="hero-banner_section-title">For Her</h2>
+                    </div> */}
+                </Link>
+            </div>
+        </section>
+
+        {/* split-screen section ended above */}
+        </>
     );
 }
